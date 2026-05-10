@@ -1,0 +1,26 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@master
+
+        with:
+          host: ${{ secrets.HOST }}
+          username: ec2-user
+          key: ${{ secrets.SSH_KEY }}
+
+          script: |
+            cd ~/home/ec2-user/apps/next-handson
+            git pull origin main
+            npm install
+            npm run build
+            pm2 restart next-handson
