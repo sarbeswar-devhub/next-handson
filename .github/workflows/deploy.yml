@@ -19,7 +19,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
 
           script: |
-            cd ~/home/ec2-user/apps/next-handson
+            cd /home/ec2-user/apps/next-handson
             git pull origin main
             npm install
             npm run build
