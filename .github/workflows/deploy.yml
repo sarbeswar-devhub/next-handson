@@ -18,6 +18,8 @@ jobs:
           username: ec2-user
           key: ${{ secrets.SSH_KEY }}
 
+          command_timeout: 30m
+
           script: |
             cd /home/ec2-user/apps/next-handson
             git pull origin main
